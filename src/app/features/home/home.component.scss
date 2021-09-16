@@ -1,0 +1,29 @@
+table {
+  width: 100%;
+}
+.home-title {
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 20px;
+}
+
+td.mat-cell,
+th.mat-header-cell {
+  text-align: center;
+  justify-content: center;
+}
+
+th.mat-header-cell {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.action-btn {
+  float: right;
+  padding: 0px 50px;
+}
+
+.save-btn {
+  width: 150px;
+}

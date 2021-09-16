@@ -1,0 +1,59 @@
+<div class="mat-elevation-z8">
+  <div class="home-title">EMPLOYEES LIST ( NOT LINKED TO ANY COMPANIES)</div>
+  <div class="action-btn">
+    <button
+      mat-raised-button
+      color="primary"
+      class="button save-btn"
+      (click)="saveTable()"
+      [disabled]="isDisabled"
+    >
+      Save
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.Name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="CompanyId">
+      <th mat-header-cell *matHeaderCellDef>Company</th>
+      <td mat-cell *matCellDef="let element; let i = index">
+        <mat-form-field>
+          <mat-label>Choose Company</mat-label>
+          <input
+            type="text"
+            placeholder="Pick one"
+            aria-label="Number"
+            matInput
+            [(ngModel)]="element.Company"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              (onSelectionChange)="bindCompany(option, i)"
+              *ngFor="let option of _filter(element.Company)"
+              [value]="option.Name"
+            >
+              {{ option.Name }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  >
+  </mat-paginator>
+</div>
